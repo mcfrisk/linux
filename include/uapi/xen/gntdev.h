@@ -33,6 +33,12 @@
 #ifndef __LINUX_PUBLIC_GNTDEV_H__
 #define __LINUX_PUBLIC_GNTDEV_H__
 
+#ifdef __KERNEL__
+#include <linux/types.h>
+#else
+#include <stdint.h>
+#endif
+
 struct ioctl_gntdev_grant_ref {
 	/* The domain ID of the grant to be mapped. */
 	uint32_t domid;
