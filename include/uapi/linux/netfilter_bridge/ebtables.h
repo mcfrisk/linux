@@ -12,6 +12,11 @@
 
 #ifndef _UAPI__LINUX_BRIDGE_EFF_H
 #define _UAPI__LINUX_BRIDGE_EFF_H
+#ifdef __KERNEL__
+#include <linux/types.h>
+#else
+#include <stdint.h>
+#endif
 #include <linux/if.h>
 #include <linux/netfilter_bridge.h>
 #include <linux/if_ether.h>
