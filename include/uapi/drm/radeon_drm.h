@@ -33,6 +33,11 @@
 #ifndef __RADEON_DRM_H__
 #define __RADEON_DRM_H__
 
+#ifdef __KERNEL__
+#include <linux/types.h>
+#else
+#include <stdint.h>
+#endif
 #include <drm/drm.h>
 
 /* WARNING: If you change any of these defines, make sure to change the
