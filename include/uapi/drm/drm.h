@@ -129,11 +129,11 @@ struct drm_version {
 	int version_major;	  /**< Major version */
 	int version_minor;	  /**< Minor version */
 	int version_patchlevel;	  /**< Patch level */
-	size_t name_len;	  /**< Length of name buffer */
+	__kernel_size_t name_len;	  /**< Length of name buffer */
 	char __user *name;	  /**< Name of driver */
-	size_t date_len;	  /**< Length of date buffer */
+	__kernel_size_t date_len;	  /**< Length of date buffer */
 	char __user *date;	  /**< User-space buffer to hold date */
-	size_t desc_len;	  /**< Length of desc buffer */
+	__kernel_size_t desc_len;	  /**< Length of desc buffer */
 	char __user *desc;	  /**< User-space buffer to hold desc */
 };
 
@@ -143,7 +143,7 @@ struct drm_version {
  * \sa drmGetBusid() and drmSetBusId().
  */
 struct drm_unique {
-	size_t unique_len;	  /**< Length of unique */
+	__kernel_size_t unique_len;	  /**< Length of unique */
 	char __user *unique;	  /**< Unique name for driver instantiation */
 };
 
