@@ -27,7 +27,12 @@
 #ifndef _DRM_MODE_H
 #define _DRM_MODE_H
 
+#ifdef __KERNEL__
 #include <linux/types.h>
+#else
+#include <stdint.h>
+#include <linux/types.h>
+#endif
 
 #define DRM_DISPLAY_INFO_LEN	32
 #define DRM_CONNECTOR_NAME_LEN	32
