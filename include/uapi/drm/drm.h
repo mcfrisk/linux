@@ -42,6 +42,10 @@
 #include <asm/ioctl.h>
 typedef unsigned int drm_handle_t;
 
+#ifndef __KERNEL__
+#include <stdlib.h>
+#endif
+
 #else /* One of the BSDs */
 
 #include <sys/ioccom.h>
