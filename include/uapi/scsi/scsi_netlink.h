@@ -22,8 +22,12 @@
 #ifndef SCSI_NETLINK_H
 #define SCSI_NETLINK_H
 
-#include <linux/netlink.h>
+#ifdef __KERNEL__
 #include <linux/types.h>
+#else
+#include <stdint.h>
+#endif
+#include <linux/netlink.h>
 
 /*
  * This file intended to be included by both kernel and user space
