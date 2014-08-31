@@ -35,6 +35,12 @@
 #define NOUVEAU_ABI16_DEVICE   0xdddddddd
 #define NOUVEAU_ABI16_CHAN(n) (0xcccc0000 | (n))
 
+#ifdef __KERNEL__
+#include <linux/types.h>
+#else
+#include <stdint.h>
+#endif
+
 #define NOUVEAU_GEM_DOMAIN_CPU       (1 << 0)
 #define NOUVEAU_GEM_DOMAIN_VRAM      (1 << 1)
 #define NOUVEAU_GEM_DOMAIN_GART      (1 << 2)
