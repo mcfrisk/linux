@@ -26,6 +26,10 @@
 #include <linux/types.h>
 #include <linux/compiler.h>
 
+#ifndef __KERNEL__
+#include <stdlib.h>
+#endif
+
 struct completion;
 
 #define CTL_MAXNAME 10		/* how many path components do we allow in a
