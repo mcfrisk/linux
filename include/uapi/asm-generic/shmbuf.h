@@ -1,7 +1,13 @@
 #ifndef __ASM_GENERIC_SHMBUF_H
 #define __ASM_GENERIC_SHMBUF_H
 
+#include <linux/types.h>
 #include <asm/bitsperlong.h>
+#include <asm/msgbuf.h>
+
+#ifndef __KERNEL__
+#include <stdlib.h>
+#endif
 
 /*
  * The shmid64_ds structure for x86 architecture.
