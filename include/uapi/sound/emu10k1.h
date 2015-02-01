@@ -300,7 +300,9 @@ struct snd_emu10k1_fx8010_control_old_gpr {
 struct snd_emu10k1_fx8010_code {
 	char name[128];
 
+#ifdef __KERNEL__
 	DECLARE_BITMAP(gpr_valid, 0x200); /* bitmask of valid initializers */
+#endif
 	__u32 __user *gpr_map;		/* initializers */
 
 	unsigned int gpr_add_control_count; /* count of GPR controls to add/replace */
@@ -313,11 +315,15 @@ struct snd_emu10k1_fx8010_code {
 	unsigned int gpr_list_control_total; /* total count of GPR controls */
 	struct snd_emu10k1_fx8010_control_gpr __user *gpr_list_controls; /* listed GPR controls */
 
+#ifdef __KERNEL__
 	DECLARE_BITMAP(tram_valid, 0x100); /* bitmask of valid initializers */
+#endif
 	__u32 __user *tram_data_map;	  /* data initializers */
 	__u32 __user *tram_addr_map;	  /* map initializers */
 
+#ifdef __KERNEL__
 	DECLARE_BITMAP(code_valid, 1024); /* bitmask of valid instructions */
+#endif
 	__u32 __user *code;		  /* one instruction - 64 bits */
 };
 
