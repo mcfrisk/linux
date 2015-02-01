@@ -34,9 +34,9 @@
 #ifndef _LINUX_RDS_H
 #define _LINUX_RDS_H
 
-#ifdef __KERNEL__
 #include <linux/types.h>
-#else
+#include <linux/socket.h>
+#ifndef __KERNEL__
 #include <stdint.h>
 #endif
 
