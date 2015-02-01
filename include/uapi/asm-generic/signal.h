@@ -88,9 +88,12 @@
 #define SIGSTKSZ	8192
 
 #ifndef __ASSEMBLY__
+#ifdef __KERNEL__
+/* already defined in userspace via stdlib.h */
 typedef struct {
 	unsigned long sig[_NSIG_WORDS];
 } sigset_t;
+#endif /* __KERNEL__ */
 
 /* not actually used, but required for linux/syscalls.h */
 typedef unsigned long old_sigset_t;
