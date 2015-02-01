@@ -34,6 +34,23 @@
 
 #define EMU10K1_FX8010_PCM_COUNT		8
 
+/*
+ * Following definitions are copies from kernel headers to support compiling
+ * this header file in userspace. The definitions are not generally available
+ * in uapi headers so the needed things are copied here wtih __EMU10k1 prefix.
+ */
+
+/* From include/linux/bitops.h */
+#define __EMU10K1_BITS_PER_BYTE           8
+/* From include/linux/kernel.h */
+#define __EMU10K1_DIV_ROUND_UP(n,d) (((n) + (d) - 1) / (d))
+/* From include/linux/bitops.h */
+#define __EMU10K1_BITS_TO_LONGS(nr) \
+        __EMU10K1_DIV_ROUND_UP(nr, __EMU10K1_BITS_PER_BYTE * sizeof(long))
+/* From include/linux/types.h */
+#define __EMU10K1_DECLARE_BITMAP(name,bits) \
+        unsigned long name[__EMU10K1_BITS_TO_LONGS(bits)]
+
 /* instruction set */
 #define iMAC0	 0x00	/* R = A + (X * Y >> 31)   ; saturation */
 #define iMAC1	 0x01	/* R = A + (-X * Y >> 31)  ; saturation */
@@ -300,7 +317,7 @@ struct snd_emu10k1_fx8010_control_old_gpr {
 struct snd_emu10k1_fx8010_code {
 	char name[128];
 
-	DECLARE_BITMAP(gpr_valid, 0x200); /* bitmask of valid initializers */
+	__EMU10K1_DECLARE_BITMAP(gpr_valid, 0x200); /* bitmask of valid initializers */
 	__u32 __user *gpr_map;		/* initializers */
 
 	unsigned int gpr_add_control_count; /* count of GPR controls to add/replace */
@@ -313,11 +330,11 @@ struct snd_emu10k1_fx8010_code {
 	unsigned int gpr_list_control_total; /* total count of GPR controls */
 	struct snd_emu10k1_fx8010_control_gpr __user *gpr_list_controls; /* listed GPR controls */
 
-	DECLARE_BITMAP(tram_valid, 0x100); /* bitmask of valid initializers */
+	__EMU10K1_DECLARE_BITMAP(tram_valid, 0x100); /* bitmask of valid initializers */
 	__u32 __user *tram_data_map;	  /* data initializers */
 	__u32 __user *tram_addr_map;	  /* map initializers */
 
-	DECLARE_BITMAP(code_valid, 1024); /* bitmask of valid instructions */
+	__EMU10K1_DECLARE_BITMAP(code_valid, 1024); /* bitmask of valid instructions */
 	__u32 __user *code;		  /* one instruction - 64 bits */
 };
 
