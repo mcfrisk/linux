@@ -45,7 +45,6 @@ struct _fpstate_ia32 {
 	__u32	padding[44];
 	union {
 		__u32 padding2[12];
-		struct _fpx_sw_bytes sw_reserved;
 	};
 };
 
