@@ -1,6 +1,7 @@
 #ifndef __HDLC_IOCTL_H__
 #define __HDLC_IOCTL_H__
 
+#include <linux/if.h>
 
 #define GENERIC_HDLC_VERSION 4	/* For synchronization with sethdlc utility */
 
