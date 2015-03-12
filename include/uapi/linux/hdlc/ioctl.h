@@ -1,7 +1,10 @@
 #ifndef __HDLC_IOCTL_H__
 #define __HDLC_IOCTL_H__
 
-#include <linux/if.h>
+/* For breaking dependency loop between if.h and hdlc/ioctl.h */
+#ifndef IFNAMSIZ
+#define IFNAMSIZ        16
+#endif
 
 #define GENERIC_HDLC_VERSION 4	/* For synchronization with sethdlc utility */
 

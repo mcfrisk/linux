@@ -23,6 +23,10 @@
 #include <linux/socket.h>		/* for "struct sockaddr" et al	*/
 #include <linux/compiler.h>		/* for "__user" et al           */
 
+/**
+ * IFNAMSIZ is also defined in linux/hdlc/ioctl.h if it does not exists
+ * to break dependency loop between linux/if.h and linux/hdlc/ioctl.h.
+ */
 #define	IFNAMSIZ	16
 #define	IFALIASZ	256
 #include <linux/hdlc/ioctl.h>
