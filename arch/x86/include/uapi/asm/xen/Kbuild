@@ -1,0 +1,5 @@
+# UAPI Header export list
+
+header-y += interface.h
+header-y += interface_32.h
+header-y += interface_64.h
