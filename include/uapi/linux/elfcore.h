@@ -17,11 +17,13 @@ struct elf_siginfo
 
 
 #ifndef __KERNEL__
+#if 0
 typedef elf_greg_t greg_t;
 typedef elf_gregset_t gregset_t;
 typedef elf_fpregset_t fpregset_t;
 typedef elf_fpxregset_t fpxregset_t;
 #define NGREG ELF_NGREG
+#endif /* 0 */
 #endif
 
 /*
@@ -48,10 +50,10 @@ struct elf_prstatus
 	struct sigaltstack pr_altstack;	/* Alternate stack info */
 	struct sigaction pr_action;	/* Signal action for current sig */
 #endif
-	pid_t	pr_pid;
-	pid_t	pr_ppid;
-	pid_t	pr_pgrp;
-	pid_t	pr_sid;
+	__kernel_pid_t	pr_pid;
+	__kernel_pid_t	pr_ppid;
+	__kernel_pid_t	pr_pgrp;
+	__kernel_pid_t	pr_sid;
 	struct timeval pr_utime;	/* User time */
 	struct timeval pr_stime;	/* System time */
 	struct timeval pr_cutime;	/* Cumulative user time */
@@ -59,7 +61,9 @@ struct elf_prstatus
 #if 0
 	long	pr_instr;		/* Current instruction */
 #endif
+#ifdef __KERNEL__
 	elf_gregset_t pr_reg;	/* GP registers */
+#endif /* __KERNEL__ */
 #ifdef CONFIG_BINFMT_ELF_FDPIC
 	/* When using FDPIC, the loadmap addresses need to be communicated
 	 * to GDB in order for GDB to do the necessary relocations.  The
@@ -84,7 +88,7 @@ struct elf_prpsinfo
 	unsigned long pr_flag;	/* flags */
 	__kernel_uid_t	pr_uid;
 	__kernel_gid_t	pr_gid;
-	pid_t	pr_pid, pr_ppid, pr_pgrp, pr_sid;
+	__kernel_pid_t	pr_pid, pr_ppid, pr_pgrp, pr_sid;
 	/* Lots missing */
 	char	pr_fname[16];	/* filename of executable */
 	char	pr_psargs[ELF_PRARGSZ];	/* initial part of arg list */
