@@ -76,7 +76,7 @@
 /* Explicitly size integers that represent pfns in the public interface
  * with Xen so that on ARM we can have one ABI that works for 32 and 64
  * bit guests. */
-typedef unsigned long xen_pfn_t;
+typedef __u32 xen_pfn_t;
 #define PRI_xen_pfn "lx"
 typedef unsigned long xen_ulong_t;
 #define PRI_xen_ulong "lx"
