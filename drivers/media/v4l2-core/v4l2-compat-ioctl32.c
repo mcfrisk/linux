@@ -413,8 +413,7 @@ static int get_v4l2_buffer32(struct v4l2_buffer *kp, struct v4l2_buffer32 __user
 	if (V4L2_TYPE_IS_PRIVATE(kp->type)) {
 		compat_long_t tmp;
 
-		if (get_user(kp->length, &up->length) ||
-				get_user(tmp, &up->m.userptr))
+		if (get_user(tmp, &up->m.userptr))
 			return -EFAULT;
 
 		kp->m.userptr = (unsigned long)compat_ptr(tmp);
@@ -507,8 +506,7 @@ static int put_v4l2_buffer32(struct v4l2_buffer *kp, struct v4l2_buffer32 __user
 			return -EFAULT;
 
 	if (V4L2_TYPE_IS_PRIVATE(kp->type)) {
-		if (put_user(kp->length, &up->length) ||
-				put_user(kp->m.userptr, &up->m.userptr))
+		if (put_user(kp->m.userptr, &up->m.userptr))
 			return -EFAULT;
 	}
 
@@ -740,7 +738,7 @@ struct v4l2_event32 {
 		struct v4l2_event_ctrl		ctrl;
 		struct v4l2_event_frame_sync	frame_sync;
 		__u8			data[64];
-        compat_s64		value64;
+		compat_s64		value64;
 	} u;
 	__u32				pending;
 	__u32				sequence;
