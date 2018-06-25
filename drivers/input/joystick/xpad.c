@@ -1107,6 +1107,7 @@ static int xpad_init_input(struct usb_xpad *xpad)
 	struct input_dev *input_dev;
 	int i, error;
 
+	xpad = kzalloc(sizeof(struct usb_xpad), GFP_KERNEL);
 	input_dev = input_allocate_device();
 	if (!input_dev)
 		return -ENOMEM;
@@ -1201,9 +1202,6 @@ static int xpad_probe(struct usb_interface *intf, const struct usb_device_id *id
 	int ep_irq_in_idx;
 	int i, error;
  
-	if (intf->cur_altsetting->desc.bNumEndpoints != 2)
-		return -ENODEV;
-
 	if (intf->cur_altsetting->desc.bNumEndpoints != 2)
 		return -ENODEV;
 
